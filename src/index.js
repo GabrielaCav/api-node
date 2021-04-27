@@ -12,5 +12,18 @@ app.use(express.json());
 require('./controllers/authController')(app);
 require('./controllers/projectController')(app);
 
+const usuarios = []
+
+app.get('/usuarios', function(req, res){
+return res.json({ usuarios });
+
+});
+
+app.post('/usuarios', function(req, res){
+    usuarios.push(req.body)
+    return res.json({ ok: true });
+    
+});
+
 
 app.listen(3000);
