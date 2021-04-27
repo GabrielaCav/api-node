@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
     if (!/^Bearer$/i.test(sheme))
     return res.status(401).send({ error: 'Token mal formado'});
 
-    console.log('token:', token);
+  
 
     jwt.verify(token, authConfig.secret, (err, decoded) => {
         if(err) return res.status(401).send({ error: 'Token invalido'});

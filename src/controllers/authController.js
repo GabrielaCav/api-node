@@ -38,14 +38,12 @@ router.post('/register', async (req, res) => {
 router.post('/authenticate' , async(req, res) => {
 const { email, password } = req.body;
 
-console.log('password:', password);
-
 const user = await User.findOne({ email }).select('+password');
 
 if(!user)
 return res.status(400).send({ error: 'User not found'});
 
-console.log('user:' , user);
+
 
 if(!await bcrypt.compare(password, user.password))
 return res.status(400).send({ error: 'Invalid password' });
